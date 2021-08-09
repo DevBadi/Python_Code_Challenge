@@ -38,11 +38,6 @@ def get_best_post():
                         headers=headers).json()  # Press Ctrl+F8 to toggle the breakpoint.
     res2 = requests.get("https://oauth.reddit.com/r/python/best",
                         headers=headers)
-    for post in res2.json()['data']['children']:
-        print('this is the title : ' + str(post['data']['title']) + ' . ==> and this is the score : ' + str(
-            post['data']['score']))
-    # print(res2.json())
-    print('finish')
     return res2
 
 
@@ -57,8 +52,6 @@ def best_5(res2):
             'score': float(post['data']['score'])
         }, ignore_index=True)
     df = df.sort_values(by=['score'], ascending=False)
-    print('we are here ==============================')
-    print(df.head(5))
     return df.head(5)
 
 
